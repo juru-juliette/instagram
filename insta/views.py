@@ -1,5 +1,20 @@
-from django.shortcuts import render
-from django.http  import HttpResponse
+from django.shortcuts import render,redirect
+from .models import Image
+# from django.http  import HttpResponse
 # Create your views here.
 def home(request):
-    return HttpResponse('IG App')
+    return render(request,'home.html')
+def image(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            image = form.save(commit=False)
+            image.user = current_user
+            image.save()
+
+            # return redirect(home)
+
+    else:
+        form = ImageForm()
+    return render(request, 'home.html', {"form": form})

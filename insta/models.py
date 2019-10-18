@@ -26,3 +26,11 @@ class Image(models.Model):
         self.save()
     def delete_image (self):
         self.delete()
+class Comment(models.Model):
+    comment=models.TextField()
+    image=models.ForeignKey(Image,default=0)
+    user=models.ForeignKey(User,on_delete=models.CASCADE,null=True)
+    def save_comment(self):
+        self.save()
+    def delete_comment(self):
+       self.delete()

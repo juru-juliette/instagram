@@ -1,26 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
-<nav class="navbar navbar-inverse" style="background-color:rgb(100, 119, 119);padding:30px;font-family: monospace;">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand">
-            <img src="https://i.pinimg.com/originals/63/9b/3d/639b3dafb544d6f061fcddd2d6686ddb.png" alt="logo" width="50" height="50">
-      </a>
 
-    </div>
-    <!-- Adding a search form  -->
-    <div class="col-sm-4 col-md-4 navbar-right">
-<div class="col-md-4"></div>
-<div class="col-md-4">
-  
-</div>
-        <form class="navbar-form" role="search" >
+<body>
+  <nav class="navbar navbar-inverse" style="background-color:rgb(100, 119, 119);padding:30px;font-family: monospace;">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand">
+          <img src="https://i.pinimg.com/originals/63/9b/3d/639b3dafb544d6f061fcddd2d6686ddb.png" alt="logo" width="50"
+            height="50">
+        </a>
+
+      </div>
+      <!--The search form above-->
+      <div class="col-sm-6 col-md-6">
+        {% if user.is_authenticated %}
+        <ul>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button"
+              aria-expanded="false">Account
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li>
+                <a href="{%url 'home'%}">Home</a>
+              </li>
+              <li>
+                <a href="/accounts/password/change">Change Password</a>
+              </li>
+              <li>
+                <a href="/logout">Logout</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        {% else %}
+        <li>
+          <a class='btn btn-default' href="/accounts/login">Login</a>
+        </li>
+
+        {% endif %}
+      </div>
+      <!-- Adding a search form  -->
+      <div class="col-sm-4 col-md-4 navbar-right">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+
+        </div>
+        <form class="navbar-form" role="search">
 
           <div class="input-group">
             <input type="text" class="form-control" placeholder="user search" name="user">
@@ -32,7 +64,8 @@
         </form>
       </div>
       <!-- search form end -->
-  </div>
-</nav>
+    </div>
+  </nav>
 </body>
+
 </html>

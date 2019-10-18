@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'insta.apps.InstaConfig',
     'bootstrap3',
+    'tinymce',
 ]
 
 MIDDLEWARE = [
@@ -117,6 +118,7 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+LOGIN_REDIRECT_URL = '/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 

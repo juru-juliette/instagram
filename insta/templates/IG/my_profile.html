@@ -1,0 +1,39 @@
+{%extends 'IG/base.html'%}
+
+{% block content %}
+{{block.super}}
+
+<body>
+    <div class = "container">
+    
+     <!-- <h3 class="row" style="color:rgb(46, 54, 54);font-family: monospace;"><strong>{{profiles.first_name}}  {{profiles.last_name}}</strong></h3> -->
+     <div>
+     
+        <img src="{{profiles.prof_image.url}}" alt="Image">
+    </div>
+  
+    <p class="well" class="row" style="color:rgb(41, 53, 53);font-family: Courier New; font-size: 20px;">{{profiles.bio}}</p>
+ 
+   
+
+    <div class="well">
+            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo"><strong>{{profiles.user}}</strong> ALBUM</button>
+            <div id="demo" class="collapse">
+             
+            
+   
+            {% for profs in images %}
+               
+       
+               <img src="{{profs.image.url}}">
+   
+            {% endfor %}         
+               
+            </div> 
+         </div>
+    
+    </div>  
+</body>
+
+</html>
+{% endblock %}

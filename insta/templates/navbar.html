@@ -28,16 +28,22 @@
             </a>
             <ul class="dropdown-menu" role="menu">
               <li>
-                <a href="{%url 'home'%}">Home</a>
+                <a href="{%url 'home'%}"><strong>Home</strong></a>
               </li>
               <li>
-                  <a href="{%url 'new-post'%}">Post</a>
-                </li>
-              <li>
-                <a href="/accounts/password/change">Change Password</a>
+                <a href="{%url 'myProfile' user.id%}"><strong>View Profile</strong></a>
               </li>
               <li>
-                <a href="/logout">Logout</a>
+                <a href="{%url 'profile'%}"><strong>Add Profile</strong></a>
+              </li>
+              <li>
+                <a href="{%url 'new-post'%}"><strong>Post</strong></a>
+              </li>
+              <li>
+                <a href="/accounts/password/change"><strong>Change Password</strong></a>
+              </li>
+              <li>
+                <a href="/logout"><strong>Logout</strong></a>
               </li>
             </ul>
           </li>

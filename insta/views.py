@@ -30,20 +30,52 @@ def new_post(request):
         form = NewPostForm()
     return render(request, 'IG/new_post.html', {"form": form})
 
+# @login_required(login_url='/accounts/login/')
+# def profile(request):
+#     current_user = request.user
+#     if request.method == 'POST':
+#         form = ProfileForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             profile = form.save(commit=False)
+#             profile.user = current_user
+#             profile.save()
+#         return redirect('home')
+
+#     else:
+#         form = ProfileForm()
+#     return render(request, 'IG/profile.html', {"form": form})
+
 @login_required(login_url='/accounts/login/')
-def profile(request):
+def profile(request,id):
+     user=User.objects.get(id=id)
+     profile=Profile.objects.get(user=user)
+     images=Image.objects.filter(user=user)
+     following1=following(user)
+     followers1=followers(profile)
+    
+     return render(request, 'IG/profile.html',{"user":user,"profile": profile, 'images':images,'following':following1,'followers':followers1})
+     
+@login_required(login_url='/accounts/login/')
+def edit_profile(request,edit):
     current_user = request.user
+    profile=Profile.objects.get(user=current_user)
+    
+   
     if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES)
+        form = Profileform(request.POST, request.FILES)
         if form.is_valid():
-            profile = form.save(commit=False)
-            profile.user = current_user
+            
+            profile.bio=form.cleaned_data['bio']
+            profile.photo = form.cleaned_data['photo']
+            profile.user=current_user
+            
             profile.save()
         return redirect('home')
 
     else:
-        form = ProfileForm()
-    return render(request, 'IG/profile.html', {"form": form})
+        form = Profileform()
+    return render(request, 'IG/edit_profile.html', {"form": form , 'user':current_user})
+
 @login_required(login_url='/accounts/login/')
 def search_results(request):
 

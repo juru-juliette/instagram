@@ -58,11 +58,11 @@ def profile(request,id):
 @login_required(login_url='/accounts/login/')
 def edit_profile(request,edit):
     current_user = request.user
-    profile=Profile.objects.get(user=current_user)
+    profile=Profile.objects.filter(user=current_user)
     
    
     if request.method == 'POST':
-        form = Profileform(request.POST, request.FILES)
+        form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
             
             profile.bio=form.cleaned_data['bio']
@@ -73,7 +73,7 @@ def edit_profile(request,edit):
         return redirect('home')
 
     else:
-        form = Profileform()
+        form = ProfileForm()
     return render(request, 'IG/edit_profile.html', {"form": form , 'user':current_user})
 
 @login_required(login_url='/accounts/login/')

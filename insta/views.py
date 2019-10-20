@@ -31,28 +31,34 @@ def new_post(request):
     return render(request, 'IG/new_post.html', {"form": form})
 
 @login_required(login_url='/accounts/login/')
-def myProfile(request,id):
-    user = User.objects.get(id = id)
-    profiles = Profile.objects.filter(id=id)
-    images = Image.objects.filter(user = user)
-   
-    return render(request,'IG/my_profile.html',{"profiles":profiles,"user":user,"images":images})
-
 def profile(request):
     current_user = request.user
-    # profile=Profile.objects.get(user=current_user)
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
-            # profile.bio=form.cleaned_data['bio']
-            # profile.prof_image= form.cleaned_data['prof_image']
             profile = form.save(commit=False)
             profile.user = current_user
             profile.save()
-            
-
-        return redirect('IG/my_profile')
+        return redirect('home')
 
     else:
         form = ProfileForm()
     return render(request, 'IG/profile.html', {"form": form})
+@login_required(login_url='/accounts/login/')
+def search_results(request):
+
+    if 'user' in request.GET and request.GET["user"]:
+        search_term = request.GET.get("user")
+        searched_users = search_by_username(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'IG/search.html',{"message":message,"users": searched_users})
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'IG/search.html',{"message":message})
+
+     
+def search_by_username(name):
+       users=User.objects.filter(username__icontains=name)
+       return users

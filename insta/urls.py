@@ -6,7 +6,7 @@ urlpatterns=[
     url('^$',views.home,name = 'home'),
     url(r'^new/post$', views.new_post, name='new-post'),
     url(r'^profile/', views.profile, name='profile'),
-    url(r'^myProfile/(\d+)', views.myProfile, name='myProfile'),
+    
    
 ]
 ## this references the location to the uploaded files.

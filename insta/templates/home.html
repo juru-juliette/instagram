@@ -15,10 +15,12 @@
 
         <div class="col-md-4">
             <div class="hr" style="height: 80px; width: 500px;size: 100px">
-                <hr >
+                <hr>
             </div>
+            <h2>{{img.user.username}}</h2>
 
-            <h2>{{img.name}}</h2>
+            <p>{{img.name}}</p>
+
             <img src="{{img.image.url}}" class="img-responsive" alt="image" height="300px" width="450px">
             {% autoescape on %}
             {{img.caption| safe}}

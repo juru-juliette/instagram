@@ -46,10 +46,10 @@ def profile(request):
         form = ProfileForm()
      return render(request, 'IG/profile.html', {"form": form})
 @login_required(login_url='/accounts/login/')
-def edit_profile(request,id):
+def edit_profile(request):
     current_user = request.user
-    picture = Profile.objects.filter(username = current_user).first()
-    return render(request, 'edit_profile.html', { "picture":picture})
+    picture = Profile.objects.filter(username = current_user)
+    return render(request, 'IG/edit_profile.html', { "picture":picture})
 @login_required(login_url='/accounts/login/')
 def search_results(request):
 

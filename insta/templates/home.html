@@ -3,34 +3,42 @@
 {% load static%}
 {% block content %}
 {{block.super}}
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="w3.css">
 <link href="https://fonts.googleapis.com/css?family=Cookie|Great+Vibes&display=swap" rel="stylesheet">
 {% block styles %}
 {% bootstrap_css %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 {% endblock %}
-<div class="container"> <br><br>
-    {%for img in image%}
-    <div class="row">
-        <div class="col-md-4 "></div>
-
-        <div class="col-md-4">
-            <div class="hr" style="height: 80px; width: 500px;size: 100px">
-                <hr>
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+    <!-- The Grid -->
+    <div class="w3-row">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-11">
+                <div class="w3-col m10">
+                    
+                    {%for img in image%}
+                    <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+                        <!-- <img src="#" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px"> -->
+                        <span class="w3-right w3-opacity"></span>
+                        <h3 style="font-family: 'Zhi Mang Xing', cursive;">{{img.user.username}}</h3><br>
+                        <hr class="w3-clear">
+                        <!-- <p style="font-family: 'Zhi Mang Xing', cursive;">{{imagep.imageName}}</p> -->
+                        <img src="{{img.image.url}}" style="width:90%" class="w3-margin-bottom">
+                        <p style="font-family: 'Zhi Mang Xing', cursive;">{{img.Caption}}</p>
+                        <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i
+                                class="fa fa-thumbs-up"></i> Like</button>
+                        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i
+                                class="fa fa-comment"></i> Comment</button>
+                    </div>
+                    {%endfor%}
+                    <!-- End Middle Column -->
+                </div>
             </div>
-            <h2>{{img.user.username}}</h2>
-
-            <p>{{img.name}}</p>
-
-            <img src="{{img.image.url}}" class="img-responsive" alt="image" height="300px" width="450px">
-            {% autoescape on %}
-            {{img.caption| safe}}
-            {% endautoescape %}
         </div>
-
-        <div class="col-md-4 "> </div>
-
     </div>
-    {%endfor%}
-
+    <!-- End Page Container -->
 </div>
-{% endblock %}
+<br>
+{%endblock%}

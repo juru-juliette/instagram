@@ -1,26 +1,4 @@
-{% load bootstrap3 %}
-{% load static%}
-<!DOCTYPE html>
-<html>
 
-<head>
-    <meta charset="utf-8">
-
-    {% if title %}
-    <title>{{title}}</title>
-    {% else %}
-    <title> Insta</title>
-    {% endif %}
-    {% block styles %}
-    {% bootstrap_css %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    {% endblock %}
-</head>
-
-<body>
-    {% include "navbar.html" %}
-    <h1 style="text-align:center;font-family: 'Cookie', cursive;"> Instagram</h1>
-    <div class="col-md-4"></div>
     <!-- <div class="col-md-4">
         <img style="width: 200px; height: 200px; border-radius:50%; margin-left: 100px" src="https://i.pinimg.com/564x/78/50/96/785096975c81b02a598e13a1c04364f4.jpg" alt="img">
     </div> -->

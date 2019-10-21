@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from tinymce.models import HTMLField
 
 
+
 class Profile(models.Model):
     photo=models.ImageField(upload_to='pic/')
     bio=models.TextField()
@@ -19,6 +20,11 @@ class Profile(models.Model):
     def update_bio(self,bio):
          self.bio=bio
          self.save()
+    @classmethod
+    def search_by_username(cls,search_term):
+       users=cls.objects.filter(username__username__icontains=search_term)
+       return users
+
 
 class Image(models.Model):
      name=models.CharField(max_length=100)

@@ -55,7 +55,7 @@ def search_results(request):
 
     if 'user' in request.GET and request.GET["user"]:
         search_term = request.GET.get("user")
-        searched_users = search_by_username(search_term)
+        searched_users = Profile.search_by_username(search_term)
         message = f"{search_term}"
 
         return render(request, 'IG/search.html',{"message":message,"users": searched_users})
@@ -65,6 +65,3 @@ def search_results(request):
         return render(request, 'IG/search.html',{"message":message})
 
      
-def search_by_username(name):
-       users=User.objects.filter(username__icontains=name)
-       return users

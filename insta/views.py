@@ -37,10 +37,10 @@ def profile(request):
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
             profile = form.save(commit=False)
-            profile.user = current_user
+            profile.username = current_user
             profile.save()
 
-        return redirect('profile')
+        return redirect('edit_profile')
 
      else:
         form = ProfileForm()
@@ -48,7 +48,7 @@ def profile(request):
 @login_required(login_url='/accounts/login/')
 def edit_profile(request):
     current_user = request.user
-    picture = Profile.objects.filter(username = current_user)
+    picture = Profile.objects.filter(username = current_user).first()
     return render(request, 'IG/edit_profile.html', { "picture":picture})
 @login_required(login_url='/accounts/login/')
 def search_results(request):

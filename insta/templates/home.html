@@ -17,14 +17,17 @@
             <div class="col-md-1"></div>
             <div class="col-md-11">
                 <div class="w3-col m10">
-                    
+
                     {%for img in image%}
                     <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-                        
+
                         <span class="w3-right w3-opacity"></span>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <img src="{{picture.photo.url}}" class="img-responsive" alt="Image">
+                        </div>
                         <h3 style="font-family: 'Cookie', cursive;">{{img.user.username}}</h3><br>
                         <hr class="w3-clear">
-                       
+
                         <img src="{{img.image.url}}" style="width:90%" class="w3-margin-bottom">
                         <p style="font-family: 'Cookie', cursive;">{{img.Caption}}</p>
                         <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i

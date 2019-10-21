@@ -1,18 +1,32 @@
 {%extends 'IG/base.html'%}
+{% load bootstrap3 %}
+{% load static%}
 {% block content %}
 {{block.super}}
 <link href="https://fonts.googleapis.com/css?family=Cookie|Great+Vibes&display=swap" rel="stylesheet">
-
-<div class="container">
+{% block styles %}
+{% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock %}
+<div class="container"> <br><br>
     {%for img in image%}
     <div class="row">
+        <div class="col-md-4 "></div>
 
-        <img src="{{img.image.url}}" class="img-responsive" alt="">
+        <div class="col-md-4">
+            <div class="hr" style="height: 80px; width: 500px;size: 100px">
+                <hr >
+            </div>
 
-        <h2 class="text-center">{{img.name}}</h2>
-        {% autoescape on %}
-        {{img.caption| safe}}
-        {% endautoescape %}
+            <h2>{{img.name}}</h2>
+            <img src="{{img.image.url}}" class="img-responsive" alt="image" height="300px" width="450px">
+            {% autoescape on %}
+            {{img.caption| safe}}
+            {% endautoescape %}
+        </div>
+
+        <div class="col-md-4 "> </div>
+
     </div>
     {%endfor%}
 

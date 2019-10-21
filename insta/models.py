@@ -6,7 +6,7 @@ from tinymce.models import HTMLField
 class Profile(models.Model):
     photo=models.ImageField(upload_to='pic/')
     bio=models.TextField()
-    user=models.OneToOneField(User,on_delete=models.CASCADE,null=True)
+    username=models.OneToOneField(User,on_delete=models.CASCADE,related_name='profile')
     follow=models.NullBooleanField(default=False)
 
 

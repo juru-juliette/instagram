@@ -30,7 +30,7 @@
     <div class="d-block">
         {% if user.is_authenticated %}
         <div >
-            <a href="{%url 'profile' user.id %}" class="d-block"><i class="glyphicon glyphicon-user" style="color:black;"></i></a>
+            <a href="{%url 'profile' %}" class="d-block"><i class="glyphicon glyphicon-user" style="color:black;"></i></a>
           
 
         <ul>
@@ -44,8 +44,11 @@
               </li>
 
                 <li>
-                    <a href="{%url 'edit_profile' user.id %}">Edit Profile</a>
+                    <a href="{%url 'profile' %}">Profile</a>
                   </li>
+                  <li>
+                      <a href="{%url 'edit_profile' %}">Edit Profile</a>
+                    </li>
               <li>
                 <a href="{%url 'new-post'%}">Add post</a>
               </li>

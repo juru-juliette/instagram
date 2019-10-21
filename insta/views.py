@@ -30,52 +30,26 @@ def new_post(request):
         form = NewPostForm()
     return render(request, 'IG/new_post.html', {"form": form})
 
-# @login_required(login_url='/accounts/login/')
-# def profile(request):
-#     current_user = request.user
-#     if request.method == 'POST':
-#         form = ProfileForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             profile = form.save(commit=False)
-#             profile.user = current_user
-#             profile.save()
-#         return redirect('home')
-
-#     else:
-#         form = ProfileForm()
-#     return render(request, 'IG/profile.html', {"form": form})
-
 @login_required(login_url='/accounts/login/')
-def profile(request,id):
-     user=User.objects.get(id=id)
-     profile=Profile.objects.get(user=user)
-     images=Image.objects.filter(user=user)
-     following1=following(user)
-     followers1=followers(profile)
-    
-     return render(request, 'IG/profile.html',{"user":user,"profile": profile, 'images':images,'following':following1,'followers':followers1})
-     
-@login_required(login_url='/accounts/login/')
-def edit_profile(request,edit):
-    current_user = request.user
-    profile=Profile.objects.filter(user=current_user)
-    
-   
-    if request.method == 'POST':
+def profile(request):
+     current_user = request.user
+     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
-            
-            profile.bio=form.cleaned_data['bio']
-            profile.photo = form.cleaned_data['photo']
-            profile.user=current_user
-            
+            profile = form.save(commit=False)
+            profile.user = current_user
             profile.save()
-        return redirect('home')
 
-    else:
+        return redirect('profile')
+
+     else:
         form = ProfileForm()
-    return render(request, 'IG/edit_profile.html', {"form": form , 'user':current_user})
-
+     return render(request, 'IG/profile.html', {"form": form})
+@login_required(login_url='/accounts/login/')
+def edit_profile(request,id):
+    current_user = request.user
+    picture = Profile.objects.filter(username = current_user).first()
+    return render(request, 'edit_profile.html', { "picture":picture})
 @login_required(login_url='/accounts/login/')
 def search_results(request):
 

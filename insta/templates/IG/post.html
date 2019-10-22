@@ -1,0 +1,14 @@
+{%extends 'IG/base.html'%}
+
+ {% block content %}
+
+ <div class="container">
+  <h4>Comments</h4>
+  {% for comment in comments %}
+ <strong> <p class="col-md-2">{{comment.user.username}}</p></strong>
+    <p>{{comment.comment}}</p>
+  {%endfor%}
+ </div>
+
+ {% endblock %}
+

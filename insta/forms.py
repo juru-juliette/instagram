@@ -8,3 +8,5 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         exclude = ['username','follow']
+class NewCommentForm(forms.Form):
+    comment = forms.CharField(label='Comment',max_length=600)

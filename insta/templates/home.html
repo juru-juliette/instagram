@@ -23,17 +23,18 @@
 
                         <span class="w3-right w3-opacity"></span>
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                            <img src="{{picture.photo.url}}" class="img-responsive" alt="Image">
+                            <img style="border-radius:50%;" src="https://i.pinimg.com/564x/2d/85/3b/2d853bc7c6b420e1ef364c676f4a1f81.jpg" class="img-responsive" alt="Image" height="60px" width="60px">
+                            <h3 style="font-family: 'Cookie', cursive;">{{img.user.username}}</h3>
                         </div>
-                        <h3 style="font-family: 'Cookie', cursive;">{{img.user.username}}</h3><br>
+                        
                         <hr class="w3-clear">
 
                         <img src="{{img.image.url}}" style="width:90%" class="w3-margin-bottom">
                         <p style="font-family: 'Cookie', cursive;">{{img.Caption}}</p>
                         <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i
-                                class="fa fa-thumbs-up"></i> Like</button>
+                                class="fa fa-thumbs-up"></i> 3Like</button>
                         <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i
-                                class="fa fa-comment"></i> Comment</button>
+                                class="fa fa-comment"></i> 6Comment</button>
                     </div>
                     {%endfor%}
                     <!-- End Middle Column -->

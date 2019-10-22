@@ -2,10 +2,9 @@ from django.shortcuts import render,redirect
 from django.http  import HttpResponse,HttpResponseRedirect
 from .models import Image,Profile
 from django.contrib.auth.decorators import login_required
-from .forms import NewPostForm,ProfileForm
+from .forms import NewPostForm,ProfileForm,NewCommentForm
 from django.contrib.auth.models import User
 
-# from django.http  import HttpResponse
 # Create your views here.
 @login_required(login_url='/accounts/login/')
 def home(request):
@@ -29,6 +28,14 @@ def new_post(request):
     else:
         form = NewPostForm()
     return render(request, 'IG/new_post.html', {"form": form})
+
+@login_required(login_url='/accounts/login/')
+def post(request,id):
+    post=Image.objects.get(id=id)
+    number_of_likes = Likes.objects.filter(image=post).count()
+
+    comments=Comment.objects.filter(image=post)
+    return render(request, 'IG/post.html', {"post": post, 'comments':comments, 'likes':number_of_likes})
 
 @login_required(login_url='/accounts/login/')
 def profile(request):
